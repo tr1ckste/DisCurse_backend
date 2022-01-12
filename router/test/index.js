@@ -7,8 +7,6 @@ module.exports = [
     method: 'get',
     handler: async (req, res) => {
       const { name } = req.query;
-      console.log(req.query);
-      console.log(name);
       const test = await Test.find({ name });
       const response = JSON.stringify(test);
       res.json(response);
