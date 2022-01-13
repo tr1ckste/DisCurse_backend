@@ -10,7 +10,7 @@ const app = express();
 const { DB_PASS, DB_LOGIN, DB_NAME } = process.env;
 const mongoDB = `mongodb+srv://${DB_LOGIN}:${DB_PASS}@cluster0.kaz3t.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
-const PORT = 3000;
+const { SERVER_URL, PORT } = require('./lib/constants');
 const ROUTER_PATH = './router';
 const ROUTER_PATH_LENGTH = ROUTER_PATH.length;
 const ROUTES = [];
@@ -50,5 +50,5 @@ for (const route of ROUTES) {
 
 app.listen(PORT, async () => {
   await mongoose.connect(mongoDB);
-  console.log('app listening at http://localhost:' + PORT);
+  console.log('app listening at ' + SERVER_URL + ':' + PORT);
 });
